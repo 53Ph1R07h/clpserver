@@ -14,7 +14,7 @@ class HomeView(View):
         offers = list(chain(clp, equipments, guitar_string, amp))
 
         # Sort by creation date (latest first) and limit to 6
-        offers = sorted(offers, key=lambda p: p.created_at, reverse=True)[:6]
+        offers = sorted(offers, key=lambda p: p.created_at, reverse=True)[:15]
 
         ####################################################################
 
@@ -27,7 +27,7 @@ class HomeView(View):
         new = list(chain(clp_new, amp_new, guitarstrings_new, equipments_new))
 
         # sort items
-        new = sorted(new, key=lambda p: p.created_at, reverse=True)[:6]
+        new = sorted(new, key=lambda p: p.created_at, reverse=True)[:15]
 
         ####################################################################
         c = CLP.objects.filter(is_active=True, most_selling=True)
@@ -37,11 +37,11 @@ class HomeView(View):
 
         most_sell = list(chain(c, a, g, e))
 
-        most_sell = sorted(most_sell, key=lambda p: p.created_at, reverse=True)[:6]
+        most_sell = sorted(most_sell, key=lambda p: p.created_at, reverse=True)[:15]
 
         ####################################################################
         # Filter for Blogs Post
-        b = BlogPost.objects.filter(published=True).order_by('-created_at')[:6]
+        b = BlogPost.objects.filter(published=True).order_by('-created_at')[:15]
         ####################################################################
 
         context = {
